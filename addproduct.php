@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Vendedor</title>
+    <title>Adicionar Produto</title>
 </head>
 <body>
-
     <?php 
     //verifica se o formulario ja foi submetido alguma vez
     if(isset($_POST['submit'])){
@@ -45,7 +44,7 @@
             //Obtem a instrução em SQL para enviar ao banco de dados
             $query = "INSERT INTO `products`(`id`, `name`, `amount`, `price`)".
             " VALUES ('','$name','$amount','$price');";
-             //Codigo em SQL
+            //Codigo em SQL
 
             //Envia o a requisição ao banco de dados
             $data = mysqli_query($bdc, $query)
@@ -60,7 +59,7 @@
             //fecha a conexão com o banco de dados
             mysqli_close($bdc);
         } 
-      
+    
     }else{
         $output_form = true;
     }
