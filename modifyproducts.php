@@ -56,7 +56,7 @@
       <label for="amount" id="amount" nome="amount"><strong>Quantidade: </strong> </label>
       <input type="number" name="amount" id="amount" value="<?php echo "$amount";?>" ><br>
       <label for="price" id="price" name="price"><strong>Preço: </strong></label>
-      <input type="number" name="price" id="price" value="<?php echo "$price";?>">
+      <input type="text" name="price" id="price" value="<?php echo "$price";?>">
       <input type="hidden" name="id" value="<?php echo "$id";?>">
       <input type="hidden" name="name" value="<?php echo "$name";?>"><br> 
       <input type="submit" name="submit" id="submit" value="submit">
