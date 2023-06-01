@@ -10,3 +10,4 @@ CREATE TABLE `sport`.`vendas` (`id` INT NOT NULL AUTO_INCREMENT , `id_product` I
 ALTER TABLE vendas ADD CONSTRAINT fk_client FOREIGN KEY (id_client) REFERENCES client (id);
 ALTER TABLE vendas ADD CONSTRAINT fk_products FOREIGN KEY (id_product) REFERENCES products (id);
 ALTER TABLE vendas ADD CONSTRAINT fk_saleman FOREIGN KEY (id_saleman) REFERENCES salemans (id);
+ALTER TABLE vendas CHANGE num_sale amont_product INT(11) NOT NULL;
