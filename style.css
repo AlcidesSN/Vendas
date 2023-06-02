@@ -1,0 +1,69 @@
+/*Usem este arquivo pra pegar uma base do css, já está linkado no sale.php, quando for
+  adicionado em outros, vai aplicar o mesmo estilo pra outros elementos.
+*/
+
+/* Define a fonte e a cor de fundo */
+body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+    }
+    
+/* Define a cor, tamanho da fonte e margem do h1*/
+    h1 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    
+/* Define a largura da tabela como 100%, remove as bordas entre as células e adiciona uma margem */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+/* Define o alinhamento do texto e o preenchimento da tabela */
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+    
+/* Define a cor de fundo do cabeçalho da tabela */
+    th {
+        background-color: #ddd;
+    }
+    
+/* Define a cor de fundo das linhas pares da tabela */
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    
+/* Define o estilo de exibição e a margem de baixo */
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    
+/* Define a largura do campo*/
+    input[type="number"] {
+        width: 50px;
+    }
+    
+/* Define o estilo do botão de envio */
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+    
+/* Define o estilo do botão de envio quando o mouse tá em cima*/
+    input[type="submit"]:hover {
+        background-color: #3e8e41;
+    }
