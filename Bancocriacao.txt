@@ -1,13 +1,19 @@
-CREATE TABLE `sport`.`products` (`id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(60) NOT NULL , `amount` INT NOT NULL , `price` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
-ALTER TABLE `products` CHANGE `price` `price` REAL NOT NULL;
+CREATE TABLE sport.products (id INT NOT NULL AUTO_INCREMENT , name VARCHAR(60) NOT NULL , amount INT NOT NULL , price INT NOT NULL , PRIMARY KEY (id)) ENGINE = InnoDB;
+ALTER TABLE products CHANGE price price REAL NOT NULL;
 
-CREATE TABLE `sport`.`salemans` (`id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(60) NOT NULL , `cpf` VARCHAR(11) NOT NULL , `rg` VARCHAR(7) NOT NULL , `code` VARCHAR(10) NOT NULL , `comition` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE sport.salemans (id INT NOT NULL AUTO_INCREMENT , name VARCHAR(60) NOT NULL , cpf VARCHAR(11) NOT NULL , rg VARCHAR(7) NOT NULL , code VARCHAR(10) NOT NULL , comition INT NOT NULL , PRIMARY KEY (id)) ENGINE = InnoDB;
 
-CREATE TABLE `sport`.`client` (`id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(60) NOT NULL , `cpf` VARCHAR(11) NOT NULL , `cell` VARCHAR(14) NOT NULL , `premium` BOOLEAN NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE sport.client (id INT NOT NULL AUTO_INCREMENT , name VARCHAR(60) NOT NULL , cpf VARCHAR(11) NOT NULL , cell VARCHAR(14) NOT NULL , premium BOOLEAN NOT NULL , PRIMARY KEY (id)) ENGINE = InnoDB;
 
-CREATE TABLE `sport`.`vendas` (`id` INT NOT NULL AUTO_INCREMENT , `id_product` INT NOT NULL , `id_saleman` INT NOT NULL , `id_client` INT NOT NULL , `num_sale` INT NOT NULL , `sale_value` INT NOT NULL , `discount` INT NOT NULL , `total` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE sport.vendas (id INT NOT NULL AUTO_INCREMENT , id_product INT NOT NULL , id_saleman INT NOT NULL , id_client INT NOT NULL , num_sale INT NOT NULL , sale_value INT NOT NULL , discount INT NOT NULL , total INT NOT NULL , PRIMARY KEY (id)) ENGINE = InnoDB;
 
 ALTER TABLE vendas ADD CONSTRAINT fk_client FOREIGN KEY (id_client) REFERENCES client (id);
 ALTER TABLE vendas ADD CONSTRAINT fk_products FOREIGN KEY (id_product) REFERENCES products (id);
 ALTER TABLE vendas ADD CONSTRAINT fk_saleman FOREIGN KEY (id_saleman) REFERENCES salemans (id);
 ALTER TABLE vendas CHANGE num_sale amont_product INT(11) NOT NULL;
+ALTER TABLE vendas DROP num_sale;
+ALTER TABLE vendas ADD amount INT NOT NULL AFTER sale_value;
+ALTER TABLE vendas CHANGE total total DOUBLE(11,2) NOT NULL;
+ALTER TABLE vendas CHANGE sale_value sale_value DECIMAL(11,2) NOT NULL;
+ALTER TABLE vendas CHANGE discount discount DOUBLE(11,2) NOT NULL;
+
