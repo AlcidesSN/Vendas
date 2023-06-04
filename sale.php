@@ -128,54 +128,68 @@
             $data = mysqli_query($bdc, $query)
             or die('Erro ao consultar o banco de dados.');
             echo '<form method="post" action="sale.php">';
-            echo '<label for="saleman">Vendedor</label>';
-            echo '<select name="saleman" id="saleman">';
+            echo '<label for="saleman" name="saleman" id="saleman"><strong>Vendedor:</strong></label>';
+            echo '<select for="saleman" name="saleman" id="saleman">';
 
             while($row = mysqli_fetch_array($data)){
          
             echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
 
             }
-            echo '</select><br>';
+            echo '</select><br><br>';
             $query = "SELECT * FROM client;";//Codigo em SQL
 
             //Realiza a requisição para o bando de dados
             $data = mysqli_query($bdc, $query)
             or die('Erro ao consultar o banco de dados.');
-            echo '<label for="saleman">Cliente</label>';
-            echo '<select name="client" id="client">';
+            echo '<label for="client" name="client"><strong>Cliente:</strong></label>';
+            echo '<select for="client" name="client" id="client">';
 
             while($row = mysqli_fetch_array($data)){
 
             echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
             } 
 
-            echo '</select>';
-    
+            echo '</select><br>';
 
+            echo '<input type="hidden" name="total" id="total" value="' . $total . '"></input>';
 
             echo '<input type="submit" name="finish" value="Registrar">';
             echo "</form>";
             // Após finalizar a compra, você pode limpar o carrinho da sessão com unset($_SESSION['carrinho'])
-            unset($_SESSION['carrinho']);
+            //unset($_SESSION['carrinho']);
             $_SESSION['final'] = array($check);
-            echo "<p>Compra finalizada! Obrigado!</p>";
         }
     } else {
         echo "<p>O carrinho de compras está vazio.</p>";
     }
     if (isset($_POST['finish'])) { 
+        unset($_SESSION['carrinho']);
         foreach($_SESSION['final'] as $i){
             foreach($i as $item){
-                foreach($item as $o){
-                    echo $o . " | ";
-            
-                }
-                echo "<br>";
-            }
-            
+                $product[] = $item[0];
+                $amount[] = end($item);
+            } 
+
         }
+        $j = 0;
+        foreach($product as $venda){
+           
+            $query = "INSERT INTO vendas(id, id_product, id_saleman, id_client, sale_value, amount, discount, total) VALUES ('',";
+
+            
+            $query .=" '$venda','". $_POST['saleman'] ."', '" . $_POST['client'] . "', '" . $_POST['total'] . "'," . $amount[$j] . " , 0, '" . $_POST['total'] . "')";
+
+            $data = mysqli_query($bdc, $query)
+            or die('Erro ao consultar o banco de dados.');
+            
+            
+            $j++;
+         
+        }
+        echo '<p>Venda cadastrada</p>';
         unset($_SESSION['final']);
+
     }
     mysqli_close($bdc);
     ?>
