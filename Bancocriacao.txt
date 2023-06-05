@@ -16,4 +16,4 @@ ALTER TABLE vendas ADD amount INT NOT NULL AFTER sale_value;
 ALTER TABLE vendas CHANGE total total DOUBLE(11,2) NOT NULL;
 ALTER TABLE vendas CHANGE sale_value sale_value DECIMAL(11,2) NOT NULL;
 ALTER TABLE vendas CHANGE discount discount DOUBLE(11,2) NOT NULL;
-
+ALTER TABLE vendas ADD date DATETIME NOT NULL AFTER total;

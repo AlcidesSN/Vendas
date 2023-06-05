@@ -55,6 +55,8 @@
     <div>
     <?php
     // Inicializa ou recupera o carrinho de compras da sessão
+
+
     session_start();
 
     if (!isset($_SESSION['final'])) {
@@ -164,6 +166,7 @@
         echo "<p>O carrinho de compras está vazio.</p>";
     }
     if (isset($_POST['finish'])) { 
+        $date = date('Y-m-d h:i:s', time());
         unset($_SESSION['carrinho']);
         foreach($_SESSION['final'] as $i){
             foreach($i as $item){
@@ -175,10 +178,10 @@
         $j = 0;
         foreach($product as $venda){
            
-            $query = "INSERT INTO vendas(id, id_product, id_saleman, id_client, sale_value, amount, discount, total) VALUES ('',";
+            $query = "INSERT INTO vendas(id, id_product, id_saleman, id_client, sale_value, amount, discount, total, date) VALUES ('',";
 
             
-            $query .=" '$venda','". $_POST['saleman'] ."', '" . $_POST['client'] . "', '" . $_POST['total'] . "'," . $amount[$j] . " , 0, '" . $_POST['total'] . "')";
+            $query .=" '$venda','". $_POST['saleman'] ."', '" . $_POST['client'] . "', '" . $_POST['total'] . "'," . $amount[$j] . " , 0, '" . $_POST['total'] . "', '$date')";
 
             $data = mysqli_query($bdc, $query)
             or die('Erro ao consultar o banco de dados.');
@@ -189,6 +192,7 @@
         }
         echo '<p>Venda cadastrada</p>';
         unset($_SESSION['final']);
+        header("Refresh:0");
 
     }
     mysqli_close($bdc);
