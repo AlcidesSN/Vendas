@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Styles/index.css">
     <title>Tabelas do banco de dados</title>
 </head>
 <body>
@@ -28,10 +29,12 @@
      
       if(isset($sep)){
         if(($sep !=  $row['date'] )){
-          echo '</table>';
+          
           echo '</tbody>';
-          echo '<hr>';
+          echo '</table>';
+          echo '</div>';
 
+          echo '<div>';;
           echo '<p><strong>Vendedor: </strong>' . $row['saleman'] . 
           ' <strong>Cliente: </strong>' . $row['client'] . '<br>' .
           '<strong>Total: </strong>' . $row['total_venda'] . '</p>';
@@ -39,10 +42,10 @@
           echo '<table>';
           echo '<thead>';
           echo '<tr>';
-          echo '<td><strong>Produto</strong></td>';
-          echo '<td><strong>Valor</strong></td>';
-          echo '<td><strong>Quantidade</strong></td>';
-          echo '<td><strong>Total</strong></td>';
+          echo '<th><strong>Produto</strong></th>';
+          echo '<th><strong>Valor</strong></th>';
+          echo '<th><strong>Quantidade</strong></th>';
+          echo '<th><strong>Total</strong></th>';
           echo '</tr>';
           echo '</thead>';
           echo '<tbody>';
@@ -50,6 +53,7 @@
       }
       if($i==true){
       
+        echo '<div>';
         echo '<p><strong>Vendedor: </strong>' . $row['saleman'] . 
         ' <strong>Cliente: </strong>' . $row['client'] . '<br>' .
         '<strong>Total: </strong>' . $row['total_venda'] . '</p>';
@@ -57,21 +61,22 @@
         echo '<table>';
         echo '<thead>';
         echo '<tr>';
-        echo '<td><strong>Produto</strong></td>';
-        echo '<td><strong>Valor</strong></td>';
-        echo '<td><strong>Quantidade</strong></td>';
-        echo '<td><strong>Total</strong></td>';
+        echo '<th><strong>Produto</strong></th>';
+        echo '<th><strong>Valor</strong></th>';
+        echo '<th><strong>Quantidade</strong></th>';
+        echo '<th><strong>Total</strong></th>';
         echo '</tr>';
         echo '</thead>';
         echo '<tbody>';
         $sep = $row['date'] ;
+        
       }
 
       echo '<tr>';
       echo '<td>' . $row['product'] . '</td>';
-      echo '<td>' . $row['price'] . '</td>';
+      echo '<td>' . number_format($row['price'],2) . '</td>';
       echo '<td>' . $row['amount'] . '</td>';
-      echo '<td>' . $row['total'] . '</td>';
+      echo '<td>' . number_format($row['total'],2) . '</td>';
       echo '</tr>';
 
 
